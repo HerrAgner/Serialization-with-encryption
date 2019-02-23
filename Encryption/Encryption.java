@@ -1,4 +1,4 @@
-package com.Encryption;
+package Encryption;
 
 import javax.crypto.*;
 import javax.crypto.spec.PBEKeySpec;

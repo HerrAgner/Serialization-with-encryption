@@ -1,6 +1,6 @@
-package com.Serialization;
+package Serialization;
 
-import com.Encryption.Decryption;
+import Encryption.Decryption;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;

@@ -1,8 +1,8 @@
-package com.Server;
+package Server;
 
 
-import com.Serialization.DeserializeObject;
-import com.Serialization.SerializeObject;
+import Serialization.DeserializeObject;
+import Serialization.SerializeObject;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,24 +1,14 @@
-package com.ObjectsToSend;
+package ObjectsToSend;
 
 import java.io.Serializable;
 
-public class Pet implements Serializable {
-    private String type;
+public class Person implements Serializable {
     private String name;
     private int age;
 
-    public Pet(String type, String name, int age) {
-        setType(type);
+    public Person(String name, int age) {
         setName(name);
         setAge(age);
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getName() {

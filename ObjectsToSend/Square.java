@@ -1,4 +1,4 @@
-package com.ObjectsToSend;
+package ObjectsToSend;
 
 import java.io.Serializable;
 

@@ -1,6 +1,4 @@
-package com;
-
-import com.Client.Program;
+import Client.Program;
 
 public class ClientMain {
 

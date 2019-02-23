@@ -1,7 +1,7 @@
-package com.Client;
+package Client;
 
 
-import com.Serialization.SerializeObject;
+import Serialization.SerializeObject;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

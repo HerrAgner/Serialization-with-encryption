@@ -1,9 +1,9 @@
-package com.Client;
+package Client;
 
-import com.ObjectsToSend.Person;
-import com.ObjectsToSend.Pet;
-import com.ObjectsToSend.Square;
-import com.Serialization.DeserializeObject;
+import ObjectsToSend.Person;
+import ObjectsToSend.Pet;
+import ObjectsToSend.Square;
+import Serialization.DeserializeObject;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -1,6 +1,4 @@
-package com;
-
-import com.Server.Server;
+import Server.Server;
 
 public class ServerMain {
     public static void main(String[] args) {

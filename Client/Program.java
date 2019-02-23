@@ -1,9 +1,9 @@
-package com.Client;
+package Client;
 
-import com.ObjectsToSend.Person;
-import com.ObjectsToSend.Pet;
-import com.ObjectsToSend.Shape;
-import com.ObjectsToSend.Square;
+import ObjectsToSend.Person;
+import ObjectsToSend.Pet;
+import ObjectsToSend.Shape;
+import ObjectsToSend.Square;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package com.Serialization;
+package Serialization;
 
-import com.Encryption.Encryption;
+import Encryption.Encryption;
 
 import javax.crypto.SealedObject;
 import java.io.*;
