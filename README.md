@@ -17,5 +17,5 @@ client - Receiver receives stream with encrypted object
 DeserializeObject - deserializeObjectFromNetwork  
 Checks if object is instance of SealedObject, if so, decrypt it  
 Client then checks if the decrypted object is instance of Collection  
-if so, it loops through the list and checks instanceof Person, Pet, Square and prints their variables, instance doesn't match, just print objects tostring.  
+if so, it loops through the list and checks instanceof Person, Pet, Square and prints their variables. If instance doesn't match, just print objects tostring  
 if the object isn't a Collection, it first checks if the object is a Person and prints it's name, otherwise it just prints the objects tostring  
