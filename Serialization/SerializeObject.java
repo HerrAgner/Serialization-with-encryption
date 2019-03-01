@@ -4,20 +4,24 @@ import Encryption.Encryption;
 
 import javax.crypto.SealedObject;
 import java.io.*;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class SerializeObject {
 
-    public void serializeObjectToFile(Object object, Path path) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(path))) {
+    public static void serializeObjectToFile(Object object, String fileName, StandardOpenOption... option) {
+        Path path = Paths.get(fileName);
+        try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(path, option))) {
             oos.writeObject(object);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void serializeObjectToNetwork(ObjectOutputStream oos, Object object) {
+    public static void serializeObjectToNetwork(ObjectOutputStream oos, Object object) {
         Encryption encryption = new Encryption();
         try {
 //            byte[] data = convertToBytes(object);
@@ -26,6 +30,16 @@ public class SerializeObject {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+    public static void serializeObjectToNetworkSocket(Socket socket, Object object) {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            serializeObjectToNetwork(oos, object);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 //    private byte[] convertToBytes(Object object) throws IOException {

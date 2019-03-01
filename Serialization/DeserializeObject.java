@@ -7,12 +7,16 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SealedObject;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class DeserializeObject {
 
-    public Object deserializeObjectFromFile(Path path) {
+    public static Object deserializeObjectFromFile(String fileName) {
+        Path path = Paths.get(fileName);
         try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(path))) {
             return ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -21,7 +25,7 @@ public class DeserializeObject {
         return null;
     }
 
-    public Object deserializeObjectFromNetwork(ObjectInputStream ois) {
+    public static Object deserializeObjectFromNetwork(ObjectInputStream ois) {
         Decryption decryption = new Decryption();
         try {
             Object object = ois.readObject();
@@ -31,12 +35,19 @@ public class DeserializeObject {
                 return object;
             }
             return object;
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
         } catch (BadPaddingException e) {
             System.out.println("Wrong key");
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object deserializeObjectFromNetworkSocket(Socket socket) {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            return deserializeObjectFromNetwork(ois);
+        }catch (Exception e) {
             e.printStackTrace();
         }
         return null;

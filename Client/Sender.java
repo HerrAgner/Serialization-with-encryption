@@ -10,11 +10,9 @@ import java.net.Socket;
 public class Sender extends Thread {
     private Socket socket;
     private ObjectOutputStream oos;
-    private SerializeObject serialize;
 
     public Sender(Socket socket) {
         this.socket = socket;
-        this.serialize = new SerializeObject();
         try {
             oos = new ObjectOutputStream(this.socket.getOutputStream());
         } catch (IOException e) {
@@ -26,6 +24,6 @@ public class Sender extends Thread {
     }
 
     public void sendToServer(Object object) {
-        serialize.serializeObjectToNetwork(oos, object);
+        SerializeObject.serializeObjectToNetwork(oos, object);
     }
 }

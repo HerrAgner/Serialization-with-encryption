@@ -7,6 +7,7 @@ import Serialization.SerializeObject;
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class ClientHandler implements Runnable {
 
@@ -14,14 +15,10 @@ public class ClientHandler implements Runnable {
     private ObjectInputStream ois;
     private Socket clientSocket;
     private Server serverApp;
-    private SerializeObject serialize;
-    private DeserializeObject deserialize;
     private boolean isRunning = false;
-    private final int TIMEOUT_MS = 1;
+    private final int TIMEOUT_MS = 10;
 
     public ClientHandler(Socket socket, Server serverApp) {
-        this.serialize = new SerializeObject();
-        this.deserialize = new DeserializeObject();
         this.clientSocket = socket;
         this.serverApp = serverApp;
 
@@ -39,15 +36,15 @@ public class ClientHandler implements Runnable {
     }
 
     private void readMessage() {
-        Object object = deserialize.deserializeObjectFromNetwork(ois);
+        Object object = DeserializeObject.deserializeObjectFromNetwork(ois);
         System.out.println("Reading: " + object);
-        serialize.serializeObjectToFile(object, Paths.get("networkObject.txt"));
+        SerializeObject.serializeObjectToFile(object, "networkObject.txt", StandardOpenOption.CREATE);
     }
 
     private void writeMessage() {
-        Object object = deserialize.deserializeObjectFromFile(Paths.get("networkObject.txt"));
+        Object object = DeserializeObject.deserializeObjectFromFile("networkObject.txt");
         System.out.println("Sending: " + object);
-        serialize.serializeObjectToNetwork(oos, object);
+        SerializeObject.serializeObjectToNetwork(oos, object);
     }
 
     @Override

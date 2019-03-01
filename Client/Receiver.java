@@ -13,11 +13,9 @@ import java.util.Collection;
 public class Receiver extends Thread {
     private Socket socket;
     private ObjectInputStream ois;
-    private DeserializeObject deserialize;
 
     public Receiver(Socket socket) {
         this.socket = socket;
-        this.deserialize = new DeserializeObject();
         try {
             this.ois = new ObjectInputStream(this.socket.getInputStream());
         } catch (IOException e) {
@@ -31,7 +29,7 @@ public class Receiver extends Thread {
     @Override
     public void run() {
         while (Client.getInstance().isRunning) {
-            Object objectFromNetwork = deserialize.deserializeObjectFromNetwork(ois);
+            Object objectFromNetwork = DeserializeObject.deserializeObjectFromNetwork(ois);
 
             // Test code - printing with cast to different objects
             if (objectFromNetwork instanceof Collection) {
