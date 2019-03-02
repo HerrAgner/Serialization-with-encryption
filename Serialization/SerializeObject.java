@@ -13,7 +13,7 @@ import java.nio.file.StandardOpenOption;
 public class SerializeObject {
 
     public static void serializeObjectToFile(Object object, String fileName, StandardOpenOption... option) {
-        Path path = Paths.get(fileName);
+        Path path = Paths.get("files/" + fileName);
         try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(path, option))) {
             oos.writeObject(object);
         } catch (IOException e) {

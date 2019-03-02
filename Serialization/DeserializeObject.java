@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 public class DeserializeObject {
 
     public static Object deserializeObjectFromFile(String fileName) {
-        Path path = Paths.get(fileName);
+        Path path = Paths.get("files/" + fileName);
         try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(path))) {
             return ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -31,7 +31,7 @@ public class DeserializeObject {
             Object object = ois.readObject();
             if (object instanceof SealedObject) {
                 object = ((SealedObject) object).getObject(decryption.decrypt());
-//                o = convertFromBytes((byte[]) o);
+//                object = convertFromBytes((byte[]) o);
                 return object;
             }
             return object;
